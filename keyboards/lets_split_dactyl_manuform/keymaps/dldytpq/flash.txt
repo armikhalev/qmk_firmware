@@ -1,0 +1,3 @@
+Run in C:\Program Files (x86)\Arduino\hardware\tools\avr
+
+avr\bin\avrdude -C"C:\Program Files (x86)\Arduino\hardware\tools\avr\etc\avrdude.conf" -v -patmega32u4 -cavr109 -PCOM15  -Uflash:w:\QMK2\qmk_firmware\lets_split_rev2_AK-HomeRow.hex 
