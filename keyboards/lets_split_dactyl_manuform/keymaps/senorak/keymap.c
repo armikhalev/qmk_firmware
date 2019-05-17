@@ -56,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * | Tab  |   a  |   o  |   e  |   u  |   i  ||   d  |   h  |   t  |   n  |   s  |   -  |
 Hold:            |both-ExtraRgt|
  * |------+------+------+------+------+------||------+------+------+------+------+------|
- * | Ctrl |   ;  |   q  |   j  |   k  |   x  ||   b  |   m  |   w  |   v  |   z  |RCtrl |
+ * | Ctrl |   ;  |   q  |   j  |   k  |   x  ||   b  |Gui(m)|   w  |   v  |   z  |RCtrl |
  * +------+------+------+------+------+------++------+------+------+------+------+------+
 		 | Left | Right  |      |      ||      |      | Up | Down |
 	         +------+------+      |      ||      |      +------+------+               
@@ -75,7 +75,7 @@ hence in the key map it is in the two outermost positions.
 [_DVORAK] = KEYMAP( \
   KC_ESC,  KC_QUOT,    KC_COMM,   KC_DOT,     KC_P,           KC_Y,            KC_F,           KC_G,           KC_C,     KC_R,    KC_L,    KC_SLSH, \
   KC_TAB,  KC_A,       O_RT,      E_RT,       KC_U,           KC_I,            KC_D,           KC_H,           KC_T,     KC_N,    KC_S,    KC_MINS, \
-  KC_LCTL, KC_SCLN,    KC_Q,      KC_J,       KC_K,           KC_X,            KC_B,           KC_M,           KC_W,     KC_V,    KC_Z,    KC_RCTL, \
+  KC_LCTL, KC_SCLN,    KC_Q,      KC_J,       KC_K,           KC_X,            KC_B,           RGUI_T(KC_M),   KC_W,     KC_V,    KC_Z,    KC_RCTL, \
   _______, _______,    KC_LEFT,   KC_RIGHT,   KC_LSFT,       CURSORLEFT,      CURSORRGHT,      RSFT_T(KC_SPC), KC_UP,    KC_DOWN,  _______, _______, \
   KC_LGUI, KC_LALT,     _______,     _______, KC_BSPC,       NUMBERS_LAYER,   NUMBERS_LAYER,   KC_ENT,        _______,  _______,  KC_RALT,  KC_LGUI \
 ),
