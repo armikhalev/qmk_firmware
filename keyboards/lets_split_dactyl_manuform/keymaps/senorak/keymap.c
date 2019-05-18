@@ -18,8 +18,8 @@ extern keymap_config_t keymap_config;
 #define _CURSORRGHT 1
 #define _CURSORLEFT 2
 #define _NUMBERS 3
-#define _NUMBERS_SHIFT 8
 #define _EXTRARIGHT 4
+#define _NUMBERS_SHIFT 5
 #define _NUMPAD 16
 //  these two layers are transparent ones intentionally.
 //  When their respective switches are held together - the extra right will be initiated.
@@ -76,7 +76,7 @@ hence in the key map it is in the two outermost positions.
   KC_ESC,  KC_QUOT,    KC_COMM,   KC_DOT,     KC_P,           KC_Y,            KC_F,           KC_G,           KC_C,     KC_R,    KC_L,    KC_SLSH, \
   KC_TAB,  KC_A,       O_RT,      E_RT,       KC_U,           KC_I,            KC_D,           KC_H,           KC_T,     KC_N,    KC_S,    KC_MINS, \
   KC_LCTL, KC_SCLN,    KC_Q,      KC_J,       KC_K,           KC_X,            KC_B,           RGUI_T(KC_M),   KC_W,     KC_V,    KC_Z,    KC_RCTL, \
-  _______, _______,    KC_LEFT,   KC_RIGHT,   KC_LSFT,       CURSORLEFT,      CURSORRGHT,      RSFT_T(KC_SPC), KC_UP,    KC_DOWN,  _______, _______, \
+  _______, _______,    KC_LEFT,   KC_RIGHT,   OSM(MOD_LSFT), CURSORLEFT,      CURSORRGHT,      RSFT_T(KC_SPC), KC_UP,    KC_DOWN,  _______, _______, \
   KC_LGUI, KC_LALT,     _______,     _______, KC_BSPC,       NUMBERS_LAYER,   NUMBERS_LAYER,   KC_ENT,        _______,  _______,  KC_RALT,  KC_LGUI \
 ),
 
@@ -118,7 +118,7 @@ without separate thumbcluster.
  * ,-----------------------------------------------------------------------------------.
  * | Esc  |Break |WheelD|MousUp|WheelU| Del  |  Ins | Home |  Up  | End  |   `  | Del  |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      |SelAll|MousLt|MousDn|MousRt| ...  | PgUp | Left | Down |Right | ...  |      |
+ * |      |SelAll|MousLt|MousDn|MousRt| ...  | PgUp | Left | Down |Right | ...  | Enter|
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      | Undo | Cut  | Copy | Paste| ...  | PgDn |MsBtLe|MsBtMi|MsBtRt| ...  |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -129,7 +129,7 @@ without separate thumbcluster.
  */
 [_CURSORRGHT] = KEYMAP( \
   _______, KC_BRK,           KC_WH_D,      KC_MS_U,      KC_WH_U,      KC_DEL,              KC_INS,   KC_HOME, KC_UP,   KC_END,  KC_GRV,  KC_DEL,  \
-  KC_ENT,  LCTL(KC_A),       KC_MS_L,      KC_MS_D,      KC_MS_R,      XXXXXXX,             KC_PGUP,  KC_LEFT, KC_DOWN, KC_RGHT, XXXXXXX, _______, \
+  KC_ENT,  LCTL(KC_A),       KC_MS_L,      KC_MS_D,      KC_MS_R,      XXXXXXX,             KC_PGUP,  KC_LEFT, KC_DOWN, KC_RGHT, XXXXXXX, KC_ENT, \
   _______, LCTL(KC_Z),       LSFT(KC_DEL), LCTL(KC_INS), LSFT(KC_INS), XXXXXXX,             KC_PGDN,  KC_BTN1, KC_BTN3, KC_BTN2, XXXXXXX, _______, \
   _______, _______,          _______,      _______,      _______,      _______,             _______,  _______, _______, _______, _______, _______, \
   _______, _______,          _______,      _______,      _______,      _______,             _______,  _______, _______, _______, _______, _______  \
@@ -150,7 +150,7 @@ without separate thumbcluster.
  */
 [_CURSORLEFT] = KEYMAP( \
   _______, KC_BRK,          KC_HOME, KC_UP,   KC_END,  KC_INS,        KC_DEL,  KC_HOME,      KC_UP,        KC_END,      KC_GRV,  KC_DEL , \
-  KC_ENT,  LCTL(KC_A),      KC_LEFT, KC_DOWN, KC_RGHT, KC_PGUP,       XXXXXXX, KC_LEFT,      KC_DOWN,      KC_RGHT,      XXXXXXX, _______, \
+  KC_ENT,  LCTL(KC_A),      KC_LEFT, KC_DOWN, KC_RGHT, KC_PGUP,       XXXXXXX, KC_LEFT,      KC_DOWN,      KC_RGHT,      XXXXXXX, KC_ENT, \
   _______, XXXXXXX,         KC_BTN2, KC_BTN3, KC_BTN1, KC_PGDN,       XXXXXXX, LCTL(KC_DEL), LCTL(KC_INS), LSFT(KC_INS), XXXXXXX, _______, \
   _______, _______,         _______, _______, _______, _______,       _______, _______,      _______,      _______,      _______, _______, \
   _______, _______,         _______, _______, _______, _______,       _______, _______,      _______,      _______,      _______, _______  \
@@ -284,6 +284,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         layer_off(_CURSORRGHT);
         layer_off(_CURSORLEFT);
         layer_off(_NUMBERS);
+        layer_off(_NUMBERS_SHIFT);
         layer_off(_EXTRARIGHT);
         layer_off(_NUMPAD);
         layer_on(_DVORAK);
@@ -301,22 +302,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           layer_invert(_NUMPAD);
       }
       return false;
-      break;
-
-    case NUMBERS_LAYER:
-      if (record->event.pressed) {
-        layer_off(_DVORAK);
-        layer_off(_CURSORRGHT);
-        layer_off(_CURSORLEFT);
-        layer_off(_NUMBERS);
-        layer_off(_EXTRARIGHT);
-        layer_off(_NUMPAD);
-        layer_on(_NUMBERS_SHIFT);
-      } else {
-        layer_off(_NUMBERS_SHIFT);
-        layer_on(_DVORAK);
-       }
-      return true;// false;
       break;
 
     case CURSORRGHT:
@@ -339,8 +324,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return true;// 	false;
       break;
-
-
 
    case O_RT:
       if (record->event.pressed) {
