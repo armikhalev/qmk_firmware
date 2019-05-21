@@ -56,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * | Tab  |   a  |   o  |   e  |   u  |   i  ||   d  |   h  |   t  |   n  |   s  |   -  |
 Hold:            |both-ExtraRgt|
  * |------+------+------+------+------+------||------+------+------+------+------+------|
- * | Ctrl |   ;  |   q  |   j  |   k  |   x  ||   b  |Gui(m)|   w  |   v  |   z  |RCtrl |
+ * | Ctrl |   ;  |   q  |   j  |   k  |   x  ||   b  |  m   |   w  |   v  |   z  |RCtrl |
  * +------+------+------+------+------+------++------+------+------+------+------+------+
 		 | Left | Right  |      |      ||      |      | Up | Down |
 	         +------+------+      |      ||      |      +------+------+               
@@ -73,10 +73,10 @@ hence in the key map it is in the two outermost positions.
  */
 
 [_DVORAK] = KEYMAP( \
-  KC_ESC,  KC_QUOT,    KC_COMM,   KC_DOT,     KC_P,           KC_Y,            KC_F,           KC_G,           KC_C,     KC_R,    KC_L,    KC_SLSH, \
-  KC_TAB,  KC_A,       O_RT,      E_RT,       KC_U,           KC_I,            KC_D,           KC_H,           KC_T,     KC_N,    KC_S,    KC_MINS, \
-  KC_LCTL, KC_SCLN,    KC_Q,      KC_J,       KC_K,           KC_X,            KC_B,           RGUI_T(KC_M),   KC_W,     KC_V,    KC_Z,    KC_RCTL, \
-  _______, _______,    KC_LEFT,   KC_RIGHT,   OSM(MOD_LSFT), CURSORLEFT,      CURSORRGHT,      RSFT_T(KC_SPC), KC_UP,    KC_DOWN,  _______, _______, \
+  KC_ESC,  KC_QUOT,    KC_COMM,   KC_DOT,             KC_P,           KC_Y,            KC_F,           KC_G,           KC_C,             KC_R,    KC_L,    KC_SLSH, \
+  KC_TAB,  KC_A,       O_RT,      E_RT,               KC_U,           KC_I,            KC_D,           KC_H,           KC_T,             KC_N,    KC_S,    KC_MINS, \
+  KC_LCTL, KC_SCLN,    KC_Q,      KC_J,               KC_K,           KC_X,            KC_B,           KC_M,           KC_W,             KC_V,    KC_Z,    KC_RCTL, \
+  _______, _______,    KC_LEFT,   RGUI_T(KC_RIGHT),   OSM(MOD_LSFT), CURSORLEFT,      CURSORRGHT,      RSFT_T(KC_SPC), RGUI_T(KC_UP),    KC_DOWN,  _______, _______, \
   KC_LGUI, KC_LALT,     _______,     _______, KC_BSPC,       NUMBERS_LAYER,   NUMBERS_LAYER,   KC_ENT,        _______,  _______,  KC_RALT,  KC_LGUI \
 ),
 
@@ -118,7 +118,7 @@ without separate thumbcluster.
  * ,-----------------------------------------------------------------------------------.
  * | Esc  |Break |WheelD|MousUp|WheelU| Del  |  Ins | Home |  Up  | End  |   `  | Del  |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      |SelAll|MousLt|MousDn|MousRt| ...  | PgUp | Left | Down |Right | ...  | Enter|
+ * |      |SelAll|MousLt|MousDn|MousRt| ...  | PgUp | Left | Down |Right | ALT  | Enter|
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      | Undo | Cut  | Copy | Paste| ...  | PgDn |MsBtLe|MsBtMi|MsBtRt| ...  |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -129,7 +129,7 @@ without separate thumbcluster.
  */
 [_CURSORRGHT] = KEYMAP( \
   _______, KC_BRK,           KC_WH_D,      KC_MS_U,      KC_WH_U,      KC_DEL,              KC_INS,   KC_HOME, KC_UP,   KC_END,  KC_GRV,  KC_DEL,  \
-  KC_ENT,  LCTL(KC_A),       KC_MS_L,      KC_MS_D,      KC_MS_R,      XXXXXXX,             KC_PGUP,  KC_LEFT, KC_DOWN, KC_RGHT, XXXXXXX, KC_ENT, \
+  KC_ENT,  LCTL(KC_A),       KC_MS_L,      KC_MS_D,      KC_MS_R,      XXXXXXX,             KC_PGUP,  KC_LEFT, KC_DOWN, KC_RGHT, KC_LALT, KC_ENT, \
   _______, LCTL(KC_Z),       LSFT(KC_DEL), LCTL(KC_INS), LSFT(KC_INS), XXXXXXX,             KC_PGDN,  KC_BTN1, KC_BTN3, KC_BTN2, XXXXXXX, _______, \
   _______, _______,          _______,      _______,      _______,      _______,             _______,  _______, _______, _______, _______, _______, \
   _______, _______,          _______,      _______,      _______,      _______,             _______,  _______, _______, _______, _______, _______  \
@@ -141,7 +141,7 @@ without separate thumbcluster.
  * ,-----------------------------------------------------------------------------------.
  * |      |Break | Home |  Up  | End  |  Ins | Del  | Home |  Up  | End  |   `  | Del  |
  * |------+------+------+------+------+------+-------------+------+------+------+------|
- * | Enter|SelAll|Right | Down | Left | PgUp | xxx  |Right | Down | Left | xxx  |Enter |
+ * | Enter|SelAll|Left | Down  |Right | PgUp | xxx  |Left | Down  |Right | ALT  |Enter |
  * |------+------+------+------+------+------+------|------+------+------+------+------|
  * |      | xxx  |MsBtRt|MsBtMi|MsBtLe| PgDn | xxx  | Cut  | Copy | Paste| xxx  |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -150,7 +150,7 @@ without separate thumbcluster.
  */
 [_CURSORLEFT] = KEYMAP( \
   _______, KC_BRK,          KC_HOME, KC_UP,   KC_END,  KC_INS,        KC_DEL,  KC_HOME,      KC_UP,        KC_END,      KC_GRV,  KC_DEL , \
-  KC_ENT,  LCTL(KC_A),      KC_LEFT, KC_DOWN, KC_RGHT, KC_PGUP,       XXXXXXX, KC_LEFT,      KC_DOWN,      KC_RGHT,      XXXXXXX, KC_ENT, \
+  KC_ENT,  LCTL(KC_A),      KC_LEFT, KC_DOWN, KC_RGHT, KC_PGUP,       XXXXXXX, KC_LEFT,      KC_DOWN,      KC_RGHT,      KC_LALT, KC_ENT, \
   _______, XXXXXXX,         KC_BTN2, KC_BTN3, KC_BTN1, KC_PGDN,       XXXXXXX, LCTL(KC_DEL), LCTL(KC_INS), LSFT(KC_INS), XXXXXXX, _______, \
   _______, _______,         _______, _______, _______, _______,       _______, _______,      _______,      _______,      _______, _______, \
   _______, _______,         _______, _______, _______, _______,       _______, _______,      _______,      _______,      _______, _______  \
@@ -214,8 +214,8 @@ without separate thumbcluster.
  */
 [_EXTRARIGHT] = KEYMAP( \
   _______, KC_GRV,  XXXXXXX, XXXXXXX, XXXXXXX,      XXXXXXX,       KC_GRV,  KC_EQL,  KC_LPRN, KC_RPRN, KC_MINS, _______, \
-  KC_CAPS, XXXXXXX, _______, _______, XXXXXXX,      XXXXXXX,       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_QUOT, _______, \
-  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,      XXXXXXX,       XXXXXXX, XXXXXXX, KC_LBRC, KC_RBRC, KC_BSLS, _______, \
+  KC_CAPS, XXXXXXX, _______, _______, XXXXXXX,      XXXXXXX,       XXXXXXX, XXXXXXX, KC_LBRC, KC_RBRC, KC_QUOT, _______, \
+  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,      XXXXXXX,       XXXXXXX, XXXXXXX, KC_LCBR, KC_RCBR, KC_BSLS, _______, \
   _______, _______, _______, _______, _______,      _______,       _______, _______, _______, _______, _______, _______, \
   _______, _______, _______, _______, _______,      _______,       _______, _______, _______, _______, _______, _______  \
  
