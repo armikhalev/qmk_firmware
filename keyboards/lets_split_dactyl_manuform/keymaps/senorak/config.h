@@ -43,7 +43,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MOUSEKEY_WHEEL_MAX_SPEED   5	//8
 #define MOUSEKEY_WHEEL_TIME_TO_MAX 40
 
-#define TAPPING_TERM 200 //200 // how long before a tap becomes a hold
-#define PERMISSIVE_HOLD
+// #define TAPPING_TERM 200 //200 // how long before a tap becomes a hold
+// #define PERMISSIVE_HOLD
 
 // does not seem doing any good... #define PREVENT_STUCK_MODIFIERS //when switching layers, this will release all mods

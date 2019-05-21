@@ -34,12 +34,6 @@ enum custom_keycodes {
   CURSORLEFT = LT(_CURSORLEFT, KC_SPC),
   NUMBERS,
   NUMBERS_LAYER = OSL(_NUMBERS_SHIFT),
-
-  // These  pairs when held together - will turn on the EXTRA RIGHT layer,
-  // But will do nothing when held down by themselves.
-  // The single hit will still be their regular key.
-  O_RT = LT(_DUMMY1, KC_O),
-  E_RT = LT(_DUMMY2, KC_E)
 };
 
 // Fillers to make layering more clear
@@ -54,14 +48,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * | Esc  |   '  |   ,  |   .  |   p  |   y  ||   f  |   g  |   c  |   r  |   l  |   /  |
  * |------+------+------+------+------+------++------+------+------+------+------+------|
  * | Tab  |   a  |   o  |   e  |   u  |   i  ||   d  |   h  |   t  |   n  |   s  |   -  |
-Hold:            |both-ExtraRgt|
+Hold: _Extraright       |      |      |
  * |------+------+------+------+------+------||------+------+------+------+------+------|
  * | Ctrl |   ;  |   q  |   j  |   k  |   x  ||   b  |  m   |   w  |   v  |   z  |RCtrl |
  * +------+------+------+------+------+------++------+------+------+------+------+------+
 		 | Left | Right  |      |      ||      |      | Up | Down |
 	         +------+------+      |      ||      |      +------+------+               
-Hold:  		               | LSft |CursLt||CursRt| RSft |
-Single hit:		       |     LSft        ||    Space    |
+  		                   | LSft |CursLt||CursRt| Space |
 		               +------+------||------+------+
       Here	            | Numbers | Bspc || Enter | Numbers |                Here 
 	^	               +------+------||------+------+                  ^
@@ -73,11 +66,11 @@ hence in the key map it is in the two outermost positions.
  */
 
 [_DVORAK] = KEYMAP( \
-  KC_ESC,  KC_QUOT,    KC_COMM,   KC_DOT,             KC_P,           KC_Y,            KC_F,           KC_G,           KC_C,             KC_R,    KC_L,    KC_SLSH, \
-  KC_TAB,  KC_A,       O_RT,      E_RT,               KC_U,           KC_I,            KC_D,           KC_H,           KC_T,             KC_N,    KC_S,    KC_MINS, \
-  KC_LCTL, KC_SCLN,    KC_Q,      KC_J,               KC_K,           KC_X,            KC_B,           KC_M,           KC_W,             KC_V,    KC_Z,    KC_RCTL, \
-  _______, _______,    KC_LEFT,   RGUI_T(KC_RIGHT),   OSM(MOD_LSFT), CURSORLEFT,      CURSORRGHT,      RSFT_T(KC_SPC), RGUI_T(KC_UP),    KC_DOWN,  _______, _______, \
-  KC_LGUI, KC_LALT,     _______,     _______, KC_BSPC,       NUMBERS_LAYER,   NUMBERS_LAYER,   KC_ENT,        _______,  _______,  KC_RALT,  KC_LGUI \
+  KC_ESC,                   KC_QUOT,   KC_COMM,            KC_DOT,         KC_P,           KC_Y,           KC_F,          KC_G,          KC_C,    KC_R,    KC_L,    KC_SLSH, \
+  LT(_EXTRARIGHT, KC_TAB),  KC_A,      KC_O,               KC_E,           KC_U,           KC_I,           KC_D,          KC_H,          KC_T,    KC_N,    KC_S,    KC_MINS, \
+  KC_LCTL,                  KC_SCLN,   KC_Q,               KC_J,           KC_K,           KC_X,           KC_B,          KC_M,          KC_W,    KC_V,    KC_Z,    KC_RCTL, \
+  _______, _______,                    KC_LEFT,       RGUI_T(KC_RIGHT),   OSM(MOD_LSFT), CURSORLEFT,      CURSORRGHT,     KC_SPC,        RGUI_T(KC_UP),    KC_DOWN,  _______, _______, \
+  KC_LGUI, KC_LALT,          _______,     _______, KC_BSPC,       NUMBERS_LAYER,   NUMBERS_LAYER,   KC_ENT,        _______,  _______,  KC_RALT,  KC_LGUI \
 ),
 
 
@@ -323,28 +316,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         update_tri_layer(_CURSORRGHT, _CURSORLEFT, _NUMBERS);
       }
       return true;// 	false;
-      break;
-
-   case O_RT:
-      if (record->event.pressed) {
-        layer_on(_DUMMY1);
-        update_tri_layer(_DUMMY1, _DUMMY2, _EXTRARIGHT);
-      } else {
-        layer_off(_DUMMY1);
-        update_tri_layer(_DUMMY1, _DUMMY2, _EXTRARIGHT);
-       }
-      return true;// false;
-      break;
-
-   case E_RT:
-      if (record->event.pressed) {
-        layer_on(_DUMMY2);
-        update_tri_layer(_DUMMY1, _DUMMY2, _EXTRARIGHT);
-      } else {
-        layer_off(_DUMMY2);
-        update_tri_layer(_DUMMY1, _DUMMY2, _EXTRARIGHT);
-       }
-      return true;// false;
       break;
  }
   return true;
