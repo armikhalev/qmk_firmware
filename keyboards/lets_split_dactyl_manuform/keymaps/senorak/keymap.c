@@ -109,11 +109,11 @@ without separate thumbcluster.
 
 /* Cursor Control on the right (Right Space)
  * ,-----------------------------------------------------------------------------------.
- * | Esc  |Break |WheelD|MousUp|WheelU| Del  |  Ins | Home |  Up  | End  |   `  | Del  |
+ * |   `  |Break |WheelD|MousUp|WheelU| Del  |  Ins | Home |  Up  | End  |   `  | Del  |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      |SelAll|MousLt|MousDn|MousRt| ...  | PgUp | Left | Down |Right | ALT  | Enter|
+ * |   +  |SelAll|MousLt|MousDn|MousRt|MsBtRt| PgUp | Left | Down |Right | ALT  | Enter|
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      | Undo | Cut  | Copy | Paste| ...  | PgDn |MsBtLe|MsBtMi|MsBtRt| ...  |      |
+ * |      |LCl(z)| DEl  | INS  | MsBtLe| ...  | PgDn ||MsBtMi|MsBtRt| Ctrl |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |      |   X  |      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -121,11 +121,11 @@ without separate thumbcluster.
  * `-----------------------------------------------------------------------------------'
  */
 [_CURSORRGHT] = KEYMAP( \
-  _______, KC_BRK,           KC_WH_D,      KC_MS_U,      KC_WH_U,      KC_DEL,              KC_INS,   KC_HOME, KC_UP,   KC_END,  KC_GRV,  KC_DEL,  \
-  KC_ENT,  LCTL(KC_A),       KC_MS_L,      KC_MS_D,      KC_MS_R,      XXXXXXX,             KC_PGUP,  KC_LEFT, KC_DOWN, KC_RGHT, KC_LALT, KC_ENT, \
-  _______, LCTL(KC_Z),       LSFT(KC_DEL), LCTL(KC_INS), LSFT(KC_INS), XXXXXXX,             KC_PGDN,  KC_BTN1, KC_BTN3, KC_BTN2, XXXXXXX, _______, \
-  _______, _______,          _______,      _______,      _______,      _______,             _______,  _______, _______, _______, _______, _______, \
-  _______, _______,          _______,      _______,      _______,      _______,             _______,  _______, _______, _______, _______, _______  \
+  KC_GRV,  KC_BRK,     KC_WH_D,      KC_MS_U,      KC_WH_U,   KC_DEL,   KC_INS,   KC_HOME, KC_UP,   KC_END,  KC_GRV,  KC_DEL,  \
+  KC_PLUS, LCTL(KC_A), KC_MS_L,      KC_MS_D,      KC_MS_R,   KC_BTN2,  KC_PGUP,  KC_LEFT, KC_DOWN, KC_RGHT, KC_LALT, KC_ENT, \
+  _______, LCTL(KC_Z), LSFT(KC_DEL), LCTL(KC_INS), KC_BTN1,   XXXXXXX,  KC_PGDN,  KC_UP,   KC_LEFT, KC_RGHT, KC_RCTL, _______, \
+  _______, _______,    _______,      _______,      _______,   _______,  _______,  _______, _______, _______, _______, _______, \
+  _______, _______,    _______,      _______,      _______,   _______,  _______,  _______, _______, _______, _______, _______  \
 ),
 
 
